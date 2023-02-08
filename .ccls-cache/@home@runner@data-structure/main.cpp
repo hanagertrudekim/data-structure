@@ -1,19 +1,31 @@
+#include <array>
 #include <iostream>
 using namespace std;
 
-void get_sum_diff(int a, int b, int *sum, int *diff) {
-  *sum = a + b;
-  *diff = a > b ? a - b : b - a;
+void Swap(int &a, int &b) {
+  int temp = a;
+  a = b;
+  b = temp;
+}
+
+void BubbleSort(int *arrIn, int nArr) {
+  for (int i = 0; i < nArr; i++) {
+    for (int j = i+1; j < nArr; j++) {
+      if (arrIn[i] < arrIn[j]) {
+        Swap(arrIn[i], arrIn[j]);
+      } else {
+        continue;
+      }
+    }
+  }
 }
 
 int main() {
-  int a = 31;
-  int b = 24;
+  int arrIn[12] = {5, 11, 6, 2, 3, 1, 9, 12, 7, 8, 10, 4};
 
-  int sum;
-  int diff;
+  BubbleSort(arrIn, (sizeof(arrIn) / sizeof(int)));
 
-  get_sum_diff(a, b, &sum, &diff);
-
-  cout << "sum: " << sum << " diff: " << diff << "\n";
+  for (int i : arrIn) {
+    cout << i << " ";
+  }
 }
